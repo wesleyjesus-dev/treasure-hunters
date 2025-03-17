@@ -1,0 +1,122 @@
+[gd_scene load_steps=22 format=3 uid="uid://c2fvvg86mhr81"]
+
+[ext_resource type="Texture2D" uid="uid://c5qhrk0rbvm7f" path="res://character/without_sword/idle/1.png" id="1_0rvpn"]
+[ext_resource type="Script" uid="uid://ds1cbhaqehfhv" path="res://character/Character.cs" id="1_o6jyn"]
+[ext_resource type="Texture2D" uid="uid://bgrlskmqfawqt" path="res://character/without_sword/fall/1.png" id="2_6kuvt"]
+[ext_resource type="Texture2D" uid="uid://40ivig0u8ovc" path="res://character/without_sword/idle/2.png" id="2_o6jyn"]
+[ext_resource type="Texture2D" uid="uid://mvwhq46616fx" path="res://character/without_sword/idle/3.png" id="3_tgjim"]
+[ext_resource type="Texture2D" uid="uid://cxcw2oxd1w0lx" path="res://character/without_sword/idle/4.png" id="4_wy5t8"]
+[ext_resource type="Texture2D" uid="uid://dhl66lnt70nr5" path="res://character/without_sword/idle/5.png" id="5_dy06j"]
+[ext_resource type="Texture2D" uid="uid://djqk62p32h2n5" path="res://character/without_sword/jump/1.png" id="8_6610h"]
+[ext_resource type="Texture2D" uid="uid://cela1p8dxk8rp" path="res://character/without_sword/jump/2.png" id="9_0shic"]
+[ext_resource type="Texture2D" uid="uid://vicpcb000l40" path="res://character/without_sword/jump/3.png" id="10_mbhnd"]
+[ext_resource type="Texture2D" uid="uid://5si7kkq3lit2" path="res://character/without_sword/land/1.png" id="11_wlm6a"]
+[ext_resource type="Texture2D" uid="uid://d45id7b1fmmg" path="res://character/without_sword/land/2.png" id="12_c0nog"]
+[ext_resource type="Texture2D" uid="uid://4qt4ydf0hkc8" path="res://character/without_sword/run/1.png" id="13_5s0vb"]
+[ext_resource type="Texture2D" uid="uid://do0vwavrne170" path="res://character/without_sword/run/2.png" id="14_4ekbm"]
+[ext_resource type="Texture2D" uid="uid://bbs6fkpkl4oj4" path="res://character/without_sword/run/3.png" id="15_kxp0i"]
+[ext_resource type="Texture2D" uid="uid://gnxihojncyyw" path="res://character/without_sword/run/4.png" id="16_yn8gt"]
+[ext_resource type="Texture2D" uid="uid://bf7y8eqoaaso3" path="res://character/without_sword/run/5.png" id="17_q7srn"]
+[ext_resource type="Texture2D" uid="uid://m2sh4holksa2" path="res://character/without_sword/run/6.png" id="18_a87gu"]
+[ext_resource type="Script" uid="uid://dwfxjll3fk2s7" path="res://character/AnimatedSprite2d.cs" id="19_6610h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkjfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6kuvt")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0rvpn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o6jyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tgjim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wy5t8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dy06j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_6610h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0shic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mbhnd")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_wlm6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c0nog")
+}],
+"loop": false,
+"name": &"land",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5s0vb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4ekbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kxp0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_yn8gt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_q7srn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_a87gu")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rvpn"]
+size = Vector2(16, 28)
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_o6jyn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("player")]
+sprite_frames = SubResource("SpriteFrames_qkjfd")
+animation = &"land"
+autoplay = "idle"
+script = ExtResource("19_6610h")
+player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_0rvpn")
+
+[connection signal="CharacterFall" from="." to="AnimatedSprite2D" method="OnCharacterFall"]
+[connection signal="CharacterIdle" from="." to="AnimatedSprite2D" method="OnCharacterIdle"]
+[connection signal="CharacterJump" from="." to="AnimatedSprite2D" method="OnCharacterJump"]
+[connection signal="MoveXDirection" from="." to="AnimatedSprite2D" method="OnCharacterMoveXDirection"]

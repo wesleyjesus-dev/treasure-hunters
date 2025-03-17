@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg6yirjnjriks"]
+
+[ext_resource type="PackedScene" uid="uid://v7dfkutioj3i" path="res://terrain/terrain_tile_map.tscn" id="1_ew5uy"]
+[ext_resource type="PackedScene" uid="uid://cj5e2xyn10d35" path="res://background/background_parallax_background.tscn" id="2_63c5o"]
+
+[node name="BaseLevel" type="Node2D"]
+
+[node name="TerrainTileMap" parent="." instance=ExtResource("1_ew5uy")]
+
+[node name="BackgroundParallaxBackground" parent="." instance=ExtResource("2_63c5o")]

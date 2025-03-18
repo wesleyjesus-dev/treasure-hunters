@@ -19,22 +19,22 @@ public partial class AnimatedSprite2d : AnimatedSprite2D
 
 	public void OnCharacterIdle()
 	{
-		Play("idle");
+		//Play("idle");
 	}
 
 	public void OnCharacterFall()
 	{
-		Play("fall");
+		//Play("fall");
 	}
 
 	public void OnCharacterJump()
 	{
-		Play("jump");
+		//Play("jump");
 	}
 
 	public void OnCharacterMoveXDirection()
 	{
-		Play("run");
+		//Play("run");
 	}
 
 	public void OnCharacterMovedToRight()
@@ -49,7 +49,7 @@ public partial class AnimatedSprite2d : AnimatedSprite2D
 
 	public void OnCharacterLand()
 	{
-		Play("land");
+		//Play("land");
 	}
 }
 

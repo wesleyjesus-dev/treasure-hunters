@@ -5,34 +5,23 @@ public partial class Character : CharacterBody2D
 {
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
-
-	[Signal]
-	public delegate void MoveXDirectionEventHandler();
 	
-	[Signal]
-	public delegate void MoveYDirectionEventHandler();
+	private StateMachine _stateMachine;
+	private Node _normalState;
 
-	[Signal]
-	public delegate void CharacterJumpEventHandler();
+    public override void _Ready()
+    {
+		_stateMachine = GetNode<StateMachine>("StateMachine");
+		_normalState = GetNode<Node>("StateMachine/NormalState");
 
-	[Signal]
-	public delegate void CharacterIdleEventHandler();
+		_stateMachine.ChangeState(_normalState);
+    }
 
-	[Signal]
-	public delegate void CharacterFallEventHandler();
-
-	[Signal]
-	public delegate void CharacterMovedToRightEventHandler();
-
-	[Signal]
-	public delegate void CharacterMovedToLeftEventHandler();
-
-	[Signal]
-	public delegate void CharacterLandEventHandler();
-
-	public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+        _stateMachine.Update(delta);
+
+        Vector2 velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -78,4 +67,28 @@ public partial class Character : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+    [Signal]
+    public delegate void MoveXDirectionEventHandler();
+
+    [Signal]
+    public delegate void MoveYDirectionEventHandler();
+
+    [Signal]
+    public delegate void CharacterJumpEventHandler();
+
+    [Signal]
+    public delegate void CharacterIdleEventHandler();
+
+    [Signal]
+    public delegate void CharacterFallEventHandler();
+
+    [Signal]
+    public delegate void CharacterMovedToRightEventHandler();
+
+    [Signal]
+    public delegate void CharacterMovedToLeftEventHandler();
+
+    [Signal]
+    public delegate void CharacterLandEventHandler();
 }

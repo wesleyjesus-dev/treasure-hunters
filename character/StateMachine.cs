@@ -16,7 +16,7 @@ public partial class StateMachine : Node
 		_currentState.Call("Enter");
 	}
 
-	public void Update(float delta)
+	public void Update(double delta)
 	{
 		if (_currentState != null)
 		{

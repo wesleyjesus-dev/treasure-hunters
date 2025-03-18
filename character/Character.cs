@@ -21,6 +21,15 @@ public partial class Character : CharacterBody2D
 	[Signal]
 	public delegate void CharacterFallEventHandler();
 
+	[Signal]
+	public delegate void CharacterMovedToRightEventHandler();
+
+	[Signal]
+	public delegate void CharacterMovedToLeftEventHandler();
+
+	[Signal]
+	public delegate void CharacterLandEventHandler();
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -30,6 +39,10 @@ public partial class Character : CharacterBody2D
 		{
 			velocity += GetGravity() * (float)delta;
 			EmitSignal(SignalName.CharacterFall);
+		}
+		else
+		{
+			EmitSignal(SignalName.CharacterLand);
 		}
 
 		// Handle Jump.
@@ -44,6 +57,15 @@ public partial class Character : CharacterBody2D
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
+			if (direction.X > 0)
+			{
+                EmitSignal(SignalName.CharacterMovedToRight);
+            }
+			else
+			{
+                EmitSignal(SignalName.CharacterMovedToLeft);
+            }
+
 			velocity.X = direction.X * Speed;
 			EmitSignal(SignalName.MoveXDirection);
 		}

@@ -119,4 +119,6 @@ shape = SubResource("RectangleShape2D_0rvpn")
 [connection signal="CharacterFall" from="." to="AnimatedSprite2D" method="OnCharacterFall"]
 [connection signal="CharacterIdle" from="." to="AnimatedSprite2D" method="OnCharacterIdle"]
 [connection signal="CharacterJump" from="." to="AnimatedSprite2D" method="OnCharacterJump"]
+[connection signal="CharacterMovedToLeft" from="." to="AnimatedSprite2D" method="OnCharacterMovedToLeft"]
+[connection signal="CharacterMovedToRight" from="." to="AnimatedSprite2D" method="OnCharacterMovedToRight"]
 [connection signal="MoveXDirection" from="." to="AnimatedSprite2D" method="OnCharacterMoveXDirection"]

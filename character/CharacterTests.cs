@@ -10,16 +10,18 @@ using System.Threading.Tasks;
 public class CharacterTests
 {
 
-    [TestCase]
-    public async Task Teste()
-    {
-        var runner = ISceneRunner.Load("res://levels/island_t_1.tscn");
+	[TestCase]
+	public async Task Teste()
+	{
+		var runner = ISceneRunner.Load("res://levels/island_t_1.tscn");
 
-        runner.SimulateKeyPressed(Key.Space);
+		runner.SimulateKeyPressed(Key.Space);
 
-        Console.WriteLine("teste");
+		Console.WriteLine("teste");
 
-        await runner.AwaitIdleFrame();
-    }
+		await runner.AwaitIdleFrame();
+
+		await runner.AwaitSignal("CharacterJump");
+	}
 
 }

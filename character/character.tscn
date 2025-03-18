@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2fvvg86mhr81"]
+[gd_scene load_steps=24 format=3 uid="uid://c2fvvg86mhr81"]
 
 [ext_resource type="Texture2D" uid="uid://c5qhrk0rbvm7f" path="res://character/without_sword/idle/1.png" id="1_0rvpn"]
 [ext_resource type="Script" uid="uid://ds1cbhaqehfhv" path="res://character/Character.cs" id="1_o6jyn"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bf7y8eqoaaso3" path="res://character/without_sword/run/5.png" id="17_q7srn"]
 [ext_resource type="Texture2D" uid="uid://m2sh4holksa2" path="res://character/without_sword/run/6.png" id="18_a87gu"]
 [ext_resource type="Script" uid="uid://dwfxjll3fk2s7" path="res://character/AnimatedSprite2d.cs" id="19_6610h"]
+[ext_resource type="Script" uid="uid://bxbubnx4yjd1q" path="res://character/StateMachine.cs" id="20_mbhnd"]
+[ext_resource type="Script" uid="uid://t5u5lkwogm48" path="res://character/NormalState.cs" id="21_wlm6a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qkjfd"]
 animations = [{
@@ -115,6 +117,12 @@ player = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_0rvpn")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("20_mbhnd")
+
+[node name="NormalState" type="Node" parent="StateMachine"]
+script = ExtResource("21_wlm6a")
 
 [connection signal="CharacterFall" from="." to="AnimatedSprite2D" method="OnCharacterFall"]
 [connection signal="CharacterIdle" from="." to="AnimatedSprite2D" method="OnCharacterIdle"]

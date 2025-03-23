@@ -1,0 +1,63 @@
+[gd_scene load_steps=14 format=3 uid="uid://btj851liffuno"]
+
+[ext_resource type="Script" uid="uid://cy61rnn6l0nkb" path="res://entities/crabby/Crabby.cs" id="1_6fnmy"]
+[ext_resource type="Texture2D" uid="uid://cyo57olt2md8q" path="res://entities/crabby/animations/idle/1.png" id="1_f0i67"]
+[ext_resource type="Texture2D" uid="uid://dqv2efjj67c8k" path="res://entities/crabby/animations/idle/2.png" id="2_6fnmy"]
+[ext_resource type="Texture2D" uid="uid://dgxyc7vv31as7" path="res://entities/crabby/animations/idle/3.png" id="3_3xoc2"]
+[ext_resource type="Texture2D" uid="uid://ieoloucti8oj" path="res://entities/crabby/animations/idle/4.png" id="4_x5xo6"]
+[ext_resource type="Texture2D" uid="uid://ci1hbjygv30vb" path="res://entities/crabby/animations/idle/5.png" id="5_pad0h"]
+[ext_resource type="Texture2D" uid="uid://feh0ojn6fkgr" path="res://entities/crabby/animations/idle/6.png" id="6_o5jkl"]
+[ext_resource type="Texture2D" uid="uid://cml2hehs611q7" path="res://entities/crabby/animations/idle/7.png" id="7_rnh25"]
+[ext_resource type="Script" uid="uid://dsqfbpxxl2073" path="res://entities/crabby/CrabbyAnimatedSprite2d.cs" id="9_3xoc2"]
+[ext_resource type="Texture2D" uid="uid://djkbotooaeblb" path="res://entities/crabby/animations/idle/8.png" id="9_x5xo6"]
+[ext_resource type="Texture2D" uid="uid://cef56mwpsrtsu" path="res://entities/crabby/animations/idle/9.png" id="10_pad0h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5jkl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f0i67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6fnmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3xoc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x5xo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pad0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o5jkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rnh25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_x5xo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pad0h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0i67"]
+size = Vector2(38, 22)
+
+[node name="Crabby" type="CharacterBody2D"]
+script = ExtResource("1_6fnmy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o5jkl")
+animation = &"idle"
+script = ExtResource("9_3xoc2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_f0i67")

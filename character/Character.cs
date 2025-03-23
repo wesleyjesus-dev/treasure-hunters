@@ -9,19 +9,20 @@ public partial class Character : CharacterBody2D
 	private StateMachine _stateMachine;
 	private Node _normalState;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		_stateMachine = GetNode<StateMachine>("StateMachine");
 		_normalState = GetNode<Node>("StateMachine/NormalState");
 
 		_stateMachine.ChangeState(_normalState);
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-        _stateMachine.Update(delta);
+		_stateMachine.Update(delta);
 
-        Vector2 velocity = Velocity;
+
+		Vector2 velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -48,12 +49,12 @@ public partial class Character : CharacterBody2D
 		{
 			if (direction.X > 0)
 			{
-                EmitSignal(SignalName.CharacterMovedToRight);
-            }
+				EmitSignal(SignalName.CharacterMovedToRight);
+			}
 			else
 			{
-                EmitSignal(SignalName.CharacterMovedToLeft);
-            }
+				EmitSignal(SignalName.CharacterMovedToLeft);
+			}
 
 			velocity.X = direction.X * Speed;
 			EmitSignal(SignalName.MoveXDirection);
@@ -66,29 +67,45 @@ public partial class Character : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+
+		int collisionCount = GetSlideCollisionCount();
+
+		for (int i = 0; i < collisionCount; i++)
+		{
+			KinematicCollision2D collision = GetSlideCollision(i);
+			CharacterBody2D other = collision.GetCollider() as CharacterBody2D;
+
+			if (other != null)
+			{
+                other.EmitSignal(SignalName.CharacterJump);
+
+                GD.Print($"Colidiu com: {other.Name}");
+			}
+		}
 	}
 
-    [Signal]
-    public delegate void MoveXDirectionEventHandler();
+	[Signal]
+	public delegate void MoveXDirectionEventHandler();
 
-    [Signal]
-    public delegate void MoveYDirectionEventHandler();
+	[Signal]
+	public delegate void MoveYDirectionEventHandler();
 
-    [Signal]
-    public delegate void CharacterJumpEventHandler();
+	[Signal]
+	public delegate void CharacterJumpEventHandler();
 
-    [Signal]
-    public delegate void CharacterIdleEventHandler();
+	[Signal]
+	public delegate void CharacterIdleEventHandler();
 
-    [Signal]
-    public delegate void CharacterFallEventHandler();
+	[Signal]
+	public delegate void CharacterFallEventHandler();
 
-    [Signal]
-    public delegate void CharacterMovedToRightEventHandler();
+	[Signal]
+	public delegate void CharacterMovedToRightEventHandler();
 
-    [Signal]
-    public delegate void CharacterMovedToLeftEventHandler();
+	[Signal]
+	public delegate void CharacterMovedToLeftEventHandler();
 
-    [Signal]
-    public delegate void CharacterLandEventHandler();
+	[Signal]
+	public delegate void CharacterLandEventHandler();
 }

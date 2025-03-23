@@ -21,6 +21,7 @@ public partial class NormalState : Node
 		GD.Print("Entrei no normal normal");
 		_swordCollision.Disabled = true;
 		_normalCollision.Disabled = false;
+		_animatedSprite2d.Play("idle");
 	}
 
 	public void Exit()
@@ -30,7 +31,7 @@ public partial class NormalState : Node
 
 	public void Update(float delta)
 	{
-		if (Input.IsActionJustPressed("idle_attack"))
+		if (Input.IsActionJustPressed("attack_1"))
 		{
 			_character.GetNode<StateMachine>("StateMachine")
 				.ChangeState(_character.GetNode<Node>("StateMachine/SwordState"));

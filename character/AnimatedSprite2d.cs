@@ -52,5 +52,3 @@ public partial class AnimatedSprite2d : AnimatedSprite2D
 		//Play("land");
 	}
 }
-
-

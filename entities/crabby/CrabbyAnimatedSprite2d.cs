@@ -11,6 +11,6 @@ public partial class CrabbyAnimatedSprite2d : AnimatedSprite2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Play("idle");
+		//Play("idle");
 	}
 }

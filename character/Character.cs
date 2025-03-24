@@ -68,21 +68,6 @@ public partial class Character : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 
-
-		int collisionCount = GetSlideCollisionCount();
-
-		for (int i = 0; i < collisionCount; i++)
-		{
-			KinematicCollision2D collision = GetSlideCollision(i);
-			CharacterBody2D other = collision.GetCollider() as CharacterBody2D;
-
-			if (other != null)
-			{
-                other.EmitSignal(SignalName.CharacterJump);
-
-                GD.Print($"Colidiu com: {other.Name}");
-			}
-		}
 	}
 
 	[Signal]

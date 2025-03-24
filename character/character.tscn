@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c2fvvg86mhr81"]
+[gd_scene load_steps=63 format=3 uid="uid://c2fvvg86mhr81"]
 
 [ext_resource type="Texture2D" uid="uid://c5qhrk0rbvm7f" path="res://character/without_sword/idle/1.png" id="1_0rvpn"]
 [ext_resource type="Script" uid="uid://ds1cbhaqehfhv" path="res://character/Character.cs" id="1_o6jyn"]
@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://bcfpxa8ry47xe" path="res://character/with_sword/throw_sword/1.png" id="51_6tlts"]
 [ext_resource type="Texture2D" uid="uid://dmvum0lyssb06" path="res://character/with_sword/throw_sword/2.png" id="52_vbq3c"]
 [ext_resource type="Texture2D" uid="uid://bev0dhx6nack3" path="res://character/with_sword/throw_sword/3.png" id="53_d27ms"]
+[ext_resource type="Script" uid="uid://c0yw50fu86ufl" path="res://character/Area2dSword.cs" id="58_6tlts"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qkjfd"]
 animations = [{
@@ -301,14 +302,19 @@ animations = [{
 size = Vector2(16, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yn8gt"]
-size = Vector2(36, 28)
+size = Vector2(17, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbq3c"]
+size = Vector2(19, 12)
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_o6jyn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("player")]
 sprite_frames = SubResource("SpriteFrames_qkjfd")
-animation = &"fall_with_sword"
+animation = &"attack_1"
+frame = 2
+frame_progress = 1.0
 script = ExtResource("19_6610h")
 player = NodePath("..")
 
@@ -317,7 +323,7 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_0rvpn")
 
 [node name="CollisionShape2D_Sword" type="CollisionShape2D" parent="."]
-position = Vector2(7, -2)
+position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_yn8gt")
 disabled = true
 
@@ -330,9 +336,18 @@ script = ExtResource("21_wlm6a")
 [node name="SwordState" type="Node" parent="StateMachine"]
 script = ExtResource("27_iaewr")
 
+[node name="Area2DSword" type="Area2D" parent="."]
+script = ExtResource("58_6tlts")
+
+[node name="CollisionShape2DSword" type="CollisionShape2D" parent="Area2DSword"]
+position = Vector2(22.5, 3)
+shape = SubResource("RectangleShape2D_vbq3c")
+disabled = true
+
 [connection signal="CharacterFall" from="." to="AnimatedSprite2D" method="OnCharacterFall"]
 [connection signal="CharacterIdle" from="." to="AnimatedSprite2D" method="OnCharacterIdle"]
 [connection signal="CharacterJump" from="." to="AnimatedSprite2D" method="OnCharacterJump"]
 [connection signal="CharacterMovedToLeft" from="." to="AnimatedSprite2D" method="OnCharacterMovedToLeft"]
 [connection signal="CharacterMovedToRight" from="." to="AnimatedSprite2D" method="OnCharacterMovedToRight"]
 [connection signal="MoveXDirection" from="." to="AnimatedSprite2D" method="OnCharacterMoveXDirection"]
+[connection signal="body_entered" from="Area2DSword" to="StateMachine/SwordState" method="BodyEntered"]

@@ -8,6 +8,7 @@ public partial class SwordState : Node
 	private CollisionShape2D _normalCollision;
 	private CollisionShape2D _swordCollision;
 	private AnimatedSprite2d _animated;
+	private Area2D _area2DSword;
 
 	public override void _Ready()
 	{
@@ -15,6 +16,7 @@ public partial class SwordState : Node
 		_normalCollision = GetNode<CollisionShape2D>("../../CollisionShape2D");
 		_swordCollision  = GetNode<CollisionShape2D>("../../CollisionShape2D_Sword");
 		_animated		 = GetNode<AnimatedSprite2d>("../../AnimatedSprite2D");
+		_area2DSword = GetNode<Area2D>("../../Area2DSword");
 	}
 
 	public void Enter()
@@ -45,6 +47,7 @@ public partial class SwordState : Node
 		}
 		if (Input.IsActionJustPressed(Animations.WithSword.Attack1))
 		{
+			_area2DSword.GetNode<CollisionShape2D>("CollisionShape2DSword").Disabled = false;
 			_animated.Play(Animations.WithSword.Attack1);
 		}
 		if (Input.IsActionJustPressed(Animations.WithSword.Attack2))
@@ -75,7 +78,18 @@ public partial class SwordState : Node
 		}
 		if (_animated.AnimationEndsIs("attack_1", "attack_2", "attack_3", "air_attack_1", "run_with_sword"))
 		{
+			_area2DSword.GetNode<CollisionShape2D>("CollisionShape2DSword").Disabled = true;
 			_animated.Play("idle_with_sword");
 		}
+	}
+
+	public void BodyEntered(Node node2D)
+	{
+		if(node2D is Crabby)
+		{
+			(node2D as Crabby).AttackReceived(-10);
+			GD.Print("attack");
+		}
+		//GD.Print("chamei o signal");
 	}
 }

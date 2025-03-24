@@ -1,19 +1,103 @@
-[gd_scene load_steps=14 format=3 uid="uid://btj851liffuno"]
+[gd_scene load_steps=33 format=3 uid="uid://btj851liffuno"]
 
 [ext_resource type="Script" uid="uid://cy61rnn6l0nkb" path="res://entities/crabby/Crabby.cs" id="1_6fnmy"]
 [ext_resource type="Texture2D" uid="uid://cyo57olt2md8q" path="res://entities/crabby/animations/idle/1.png" id="1_f0i67"]
 [ext_resource type="Texture2D" uid="uid://dqv2efjj67c8k" path="res://entities/crabby/animations/idle/2.png" id="2_6fnmy"]
+[ext_resource type="Texture2D" uid="uid://ekdyxt00wpth" path="res://entities/crabby/animations/attack/1.png" id="2_a8de5"]
 [ext_resource type="Texture2D" uid="uid://dgxyc7vv31as7" path="res://entities/crabby/animations/idle/3.png" id="3_3xoc2"]
+[ext_resource type="Texture2D" uid="uid://bs5po0gagd1sh" path="res://entities/crabby/animations/attack/2.png" id="3_yyeny"]
+[ext_resource type="Texture2D" uid="uid://r0pu3fx22yv2" path="res://entities/crabby/animations/attack/3.png" id="4_cf6kg"]
 [ext_resource type="Texture2D" uid="uid://ieoloucti8oj" path="res://entities/crabby/animations/idle/4.png" id="4_x5xo6"]
+[ext_resource type="Texture2D" uid="uid://dfa4dkik8hyno" path="res://entities/crabby/animations/attack/4.png" id="5_iqv0j"]
 [ext_resource type="Texture2D" uid="uid://ci1hbjygv30vb" path="res://entities/crabby/animations/idle/5.png" id="5_pad0h"]
 [ext_resource type="Texture2D" uid="uid://feh0ojn6fkgr" path="res://entities/crabby/animations/idle/6.png" id="6_o5jkl"]
+[ext_resource type="Texture2D" uid="uid://cqg63qyi04s2v" path="res://entities/crabby/animations/dead_ground/1.png" id="6_vexh4"]
+[ext_resource type="Texture2D" uid="uid://b5lpulcje6wml" path="res://entities/crabby/animations/dead_ground/2.png" id="7_0fxhe"]
 [ext_resource type="Texture2D" uid="uid://cml2hehs611q7" path="res://entities/crabby/animations/idle/7.png" id="7_rnh25"]
+[ext_resource type="Texture2D" uid="uid://bgxt3s4jagoc" path="res://entities/crabby/animations/dead_ground/3.png" id="8_l286a"]
 [ext_resource type="Script" uid="uid://dsqfbpxxl2073" path="res://entities/crabby/CrabbyAnimatedSprite2d.cs" id="9_3xoc2"]
+[ext_resource type="Texture2D" uid="uid://bc3lhrtxqwba7" path="res://entities/crabby/animations/dead_ground/4.png" id="9_ajyci"]
 [ext_resource type="Texture2D" uid="uid://djkbotooaeblb" path="res://entities/crabby/animations/idle/8.png" id="9_x5xo6"]
+[ext_resource type="Texture2D" uid="uid://de7f2fb3liwrj" path="res://entities/crabby/animations/dead_hit/1.png" id="10_e2uxl"]
 [ext_resource type="Texture2D" uid="uid://cef56mwpsrtsu" path="res://entities/crabby/animations/idle/9.png" id="10_pad0h"]
+[ext_resource type="Texture2D" uid="uid://b7mtljjh46q6b" path="res://entities/crabby/animations/dead_hit/2.png" id="11_iqidt"]
+[ext_resource type="Texture2D" uid="uid://c7vhktm3ondna" path="res://entities/crabby/animations/dead_hit/3.png" id="12_7mcsu"]
+[ext_resource type="Texture2D" uid="uid://bp5h8yt2xvjfu" path="res://entities/crabby/animations/dead_hit/4.png" id="13_emoke"]
+[ext_resource type="Texture2D" uid="uid://c63dyq26dx51o" path="res://entities/crabby/animations/hit/1.png" id="14_n4n8g"]
+[ext_resource type="Texture2D" uid="uid://52vt6snhsaep" path="res://entities/crabby/animations/hit/2.png" id="15_3l2wk"]
+[ext_resource type="Texture2D" uid="uid://cudjxcmkc1l8x" path="res://entities/crabby/animations/hit/3.png" id="16_84126"]
+[ext_resource type="Texture2D" uid="uid://bkcgtqk74554j" path="res://entities/crabby/animations/hit/4.png" id="17_ixw26"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5jkl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a8de5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yyeny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cf6kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iqv0j")
+}],
+"loop": false,
+"name": &"crabby_attack_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vexh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0fxhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l286a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ajyci")
+}],
+"loop": false,
+"name": &"crabby_dead_ground",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_e2uxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iqidt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7mcsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_emoke")
+}],
+"loop": true,
+"name": &"crabby_dead_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_n4n8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3l2wk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_84126")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ixw26")
+}],
+"loop": false,
+"name": &"crabby_hit",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_f0i67")
@@ -48,16 +132,46 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0i67"]
-size = Vector2(38, 22)
+size = Vector2(17, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pad0h"]
+size = Vector2(9, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg047"]
+size = Vector2(67, 11)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a8de5"]
+font_size = 10
 
 [node name="Crabby" type="CharacterBody2D"]
 script = ExtResource("1_6fnmy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o5jkl")
-animation = &"idle"
+animation = &"crabby_dead_hit"
 script = ExtResource("9_3xoc2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 2)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_f0i67")
+
+[node name="Area2DHitBoxCrabby" type="Area2D" parent="."]
+
+[node name="CollisionShape2DHitBoxCrabby" type="CollisionShape2D" parent="Area2DHitBoxCrabby"]
+position = Vector2(-14.5, 0)
+shape = SubResource("RectangleShape2D_pad0h")
+
+[node name="Area2DAttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2DAttackRangeCrabby" type="CollisionShape2D" parent="Area2DAttackRange"]
+position = Vector2(2.5, 4.5)
+shape = SubResource("RectangleShape2D_rg047")
+disabled = true
+
+[node name="HpLabel" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -24.0
+offset_right = 31.0
+offset_bottom = -1.0
+text = "100"
+label_settings = SubResource("LabelSettings_a8de5")
